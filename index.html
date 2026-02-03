@@ -158,6 +158,19 @@
       background-position: center;
       clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
     }
+    /* Убираем артефакт (тонкую линию) по краю clip-path в hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: 13%;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: var(--color-bg);
+      transform: skewX(-8.5deg);
+      pointer-events: none;
+      z-index: 1;
+    }
     
     .hero-grid {
       display: block;
