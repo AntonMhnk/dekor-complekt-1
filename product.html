@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Штукатурка Venice Premium — Декор Комплект</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'Denistina';
+      src: url('./public/fonts/denistina_en.ttf') format('truetype');
+    }
+    
+    :root {
+      --color-bg: #F5F2EB;
+      --color-bg-light: #FFFFFF;
+      --color-primary: #8B7355;
+      --color-secondary: #5A5A5A;
+      --color-accent: #A89078;
+      --color-text: #2C2C2C;
+      --color-text-light: #7A7A7A;
+      --color-border: #E8E4DC;
+      --color-dark: #6B5B4F;
+      --font-main: 'Montserrat', sans-serif;
+      --font-accent: 'Denistina', cursive;
+      --transition: 0.3s ease;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-main);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+    
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    img { max-width: 100%; height: auto; display: block; }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(245, 242, 235, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    
+    .logo-tagline {
+      font-size: 10px;
+      color: var(--color-text-light);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .nav a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+    }
+    
+    .nav a:hover,
+    .nav a.active {
+      color: var(--color-primary);
+    }
+    
+    .header-phone {
+      font-size: 14px;
+      color: var(--color-text);
+    }
+    
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-bottom: 32px;
+    }
+    
+    .breadcrumb a:hover {
+      color: var(--color-primary);
+    }
+    
+    /* ===== PRODUCT PAGE ===== */
+    .product-page {
+      padding: 120px 0 80px;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+    
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+    }
+    
+    .gallery-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .thumb {
+      width: 80px;
+      height: 80px;
+      padding: 0;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .thumb.active,
+    .thumb:hover {
+      border-color: var(--color-primary);
+    }
+    
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .gallery-main {
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--color-bg-light);
+    }
+    
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 8px 16px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--color-primary);
+      color: white;
+    }
+    
+    /* Product Info */
+    .product-brand-line {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-bottom: 12px;
+    }
+    
+    .product-title {
+      font-weight: 300;
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      color: var(--color-text);
+    }
+    
+    .product-price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .price-value {
+      font-size: 32px;
+      color: var(--color-text);
+    }
+    
+    .price-per {
+      font-size: 14px;
+      color: var(--color-text-light);
+    }
+    
+    .product-desc {
+      font-size: 15px;
+      color: var(--color-text-light);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    
+    /* Options */
+    .product-options {
+      margin-bottom: 32px;
+    }
+    
+    .option-row {
+      margin-bottom: 24px;
+    }
+    
+    .option-row label {
+      display: block;
+      font-size: 13px;
+      color: var(--color-text-light);
+      margin-bottom: 12px;
+    }
+    
+    .colors {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .color-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .color-btn.active,
+    .color-btn:hover {
+      border-color: var(--color-primary);
+      transform: scale(1.1);
+    }
+    
+    .sizes {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .size-btn {
+      padding: 10px 20px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      font-family: var(--font-main);
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .size-btn.active,
+    .size-btn:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+    
+    .qty-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--color-border);
+      width: fit-content;
+    }
+    
+    .qty-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .qty-btn:hover {
+      background: var(--color-bg);
+    }
+    
+    .qty-box input {
+      width: 60px;
+      height: 44px;
+      text-align: center;
+      border: none;
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      font-family: var(--font-main);
+      font-size: 16px;
+      background: transparent;
+    }
+    
+    .qty-box input:focus {
+      outline: none;
+    }
+    
+    /* Actions */
+    .product-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    
+    .btn-cart {
+      flex: 1;
+      padding: 18px 32px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      font-family: var(--font-main);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-cart:hover {
+      background: var(--color-dark);
+    }
+    
+    .btn-heart {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-heart:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    
+    /* Benefits */
+    .product-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--color-text-light);
+    }
+    
+    .benefit svg {
+      color: var(--color-primary);
+    }
+    
+    /* Tabs */
+    .product-tabs {
+      border-top: 1px solid var(--color-border);
+      padding-top: 48px;
+    }
+    
+    .tabs-nav {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+    
+    .tab-btn {
+      padding: 8px 0;
+      background: transparent;
+      border: none;
+      font-family: var(--font-main);
+      font-size: 14px;
+      color: var(--color-text-light);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-primary);
+      transition: var(--transition);
+    }
+    
+    .tab-btn.active,
+    .tab-btn:hover {
+      color: var(--color-text);
+    }
+    
+    .tab-btn.active::after {
+      width: 100%;
+    }
+    
+    .tab-panel {
+      display: none;
+    }
+    
+    .tab-panel.active {
+      display: block;
+    }
+    
+    .tab-panel p {
+      color: var(--color-text-light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    
+    .specs-table {
+      width: 100%;
+      max-width: 500px;
+      border-collapse: collapse;
+    }
+    
+    .specs-table tr {
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .specs-table td {
+      padding: 14px 0;
+      font-size: 14px;
+    }
+    
+    .specs-table td:first-child {
+      color: var(--color-text-light);
+      width: 160px;
+    }
+    
+    /* Related Products */
+    .related-section {
+      padding: 80px 0;
+      background: var(--color-bg-light);
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    
+    .section-title {
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--color-text);
+    }
+    
+    .link-arrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--color-primary);
+    }
+    
+    .link-arrow span {
+      transition: var(--transition);
+    }
+    
+    .link-arrow:hover span {
+      transform: translateX(4px);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    .product-card {
+      display: block;
+      background: var(--color-bg);
+    }
+    
+    .product-card-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    
+    .product-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .product-card:hover .product-card-img img {
+      transform: scale(1.05);
+    }
+    
+    .product-card-info {
+      padding: 20px;
+    }
+    
+    .product-card-cat {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+    }
+    
+    .product-card-name {
+      font-weight: 300;
+      font-size: 15px;
+      margin: 8px 0 12px;
+      line-height: 1.4;
+      color: var(--color-text);
+    }
+    
+    .product-card-price {
+      font-size: 15px;
+      color: var(--color-primary);
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 60px 0 30px;
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .footer-logo-img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .footer-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--color-bg);
+    }
+    
+    .footer-logo-tagline {
+      font-size: 11px;
+      color: rgba(245, 242, 235, 0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .footer-tagline {
+      font-size: 13px;
+      color: rgba(245, 242, 235, 0.7);
+    }
+    
+    .footer-col h4 {
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245, 242, 235, 0.5);
+      margin-bottom: 20px;
+    }
+    
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--color-bg);
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+    
+    .footer-col a:hover {
+      opacity: 0.7;
+    }
+    
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(245, 242, 235, 0.2);
+      font-size: 12px;
+      color: rgba(245, 242, 235, 0.5);
+      text-align: center;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      
+      .gallery {
+        position: static;
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-thumbs {
+        flex-direction: row;
+        order: 1;
+      }
+      
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+      
+      .nav {
+        display: none;
+      }
+      
+      .product-title {
+        font-size: 28px;
+      }
+      
+      .tabs-nav {
+        gap: 24px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="./public/images/logo.webp" alt="Декор Комплект" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-name">Декор Комплект</span>
+          <span class="logo-tagline">Салон декоративных покрытий</span>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Главная</a>
+        <a href="catalog.html" class="active">Каталог</a>
+        <a href="#">О нас</a>
+        <a href="#">Контакты</a>
+      </nav>
+      <a href="tel:+73517277339" class="header-phone">+7 351 727-73-39</a>
+    </div>
+  </header>
+
+  <!-- Product Page -->
+  <section class="product-page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Главная</a>
+        <span>/</span>
+        <a href="catalog.html">Каталог</a>
+        <span>/</span>
+        <a href="catalog.html">Штукатурка</a>
+        <span>/</span>
+        <span>Venice Premium</span>
+      </nav>
+
+      <div class="product-grid">
+        <!-- Gallery -->
+        <div class="gallery">
+          <div class="gallery-thumbs">
+            <button class="thumb active" onclick="changeImage(this, './public/images/EN4LWs-4M-pPutx2FVyLhTx_wTnO30jqmPIzZJidAovx90GUNtu7iEiJ0v06F3FZi1A02jwtfKz9igAokTKXKTWf.webp')">
+              <img src="./public/images/EN4LWs-4M-pPutx2FVyLhTx_wTnO30jqmPIzZJidAovx90GUNtu7iEiJ0v06F3FZi1A02jwtfKz9igAokTKXKTWf.webp" alt="">
+            </button>
+            <button class="thumb" onclick="changeImage(this, './public/images/eYPy5_3n3tJ5d5ebWazQneW8cfk-OaopdJg7A0ZD2T0feZax92_MPMptJTeTYEV7MpNDwXDf9N2z8EIk_8Bdlm8n.webp')">
+              <img src="./public/images/eYPy5_3n3tJ5d5ebWazQneW8cfk-OaopdJg7A0ZD2T0feZax92_MPMptJTeTYEV7MpNDwXDf9N2z8EIk_8Bdlm8n.webp" alt="">
+            </button>
+            <button class="thumb" onclick="changeImage(this, './public/images/fJ08JFB-rg8PI2ChKA74qPMAbdBpgU8rlIuZiDpHK5lrvssMLnfCdC6T5dk8bqaw4R-8LDqv0Y3h0acYuX1Z3A1S.webp')">
+              <img src="./public/images/fJ08JFB-rg8PI2ChKA74qPMAbdBpgU8rlIuZiDpHK5lrvssMLnfCdC6T5dk8bqaw4R-8LDqv0Y3h0acYuX1Z3A1S.webp" alt="">
+            </button>
+          </div>
+          <div class="gallery-main">
+            <img src="./public/images/EN4LWs-4M-pPutx2FVyLhTx_wTnO30jqmPIzZJidAovx90GUNtu7iEiJ0v06F3FZi1A02jwtfKz9igAokTKXKTWf.webp" alt="" id="mainImage">
+            <span class="tag">Бестселлер</span>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-info">
+          <div class="product-brand-line">
+            <span>San Marco</span>
+            <span>·</span>
+            <span>Артикул: SM-VP-001</span>
+          </div>
+          
+          <h1 class="product-title">Штукатурка Venice Premium</h1>
+          
+          <div class="product-price-block">
+            <span class="price-value">8 500 ₽</span>
+            <span class="price-per">/ 1 кг</span>
+          </div>
+
+          <p class="product-desc">
+            Венецианская штукатурка премиум-класса с эффектом натурального мрамора. 
+            Создаёт роскошное глянцевое покрытие с глубиной цвета.
+          </p>
+
+          <div class="product-options">
+            <div class="option-row">
+              <label>Оттенок</label>
+              <div class="colors">
+                <button class="color-btn active" style="background: #E8DED1;"></button>
+                <button class="color-btn" style="background: #C9B99A;"></button>
+                <button class="color-btn" style="background: #8B7355;"></button>
+                <button class="color-btn" style="background: #5A5A5A;"></button>
+              </div>
+            </div>
+
+            <div class="option-row">
+              <label>Фасовка</label>
+              <div class="sizes">
+                <button class="size-btn">1 кг</button>
+                <button class="size-btn active">5 кг</button>
+                <button class="size-btn">15 кг</button>
+              </div>
+            </div>
+
+            <div class="option-row">
+              <label>Количество</label>
+              <div class="qty-box">
+                <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                <input type="number" value="1" min="1" id="qtyInput">
+                <button class="qty-btn" onclick="changeQty(1)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn-cart">Добавить в корзину</button>
+            <button class="btn-heart">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="product-benefits">
+            <div class="benefit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+              <span>Доставка по городу от 500 ₽</span>
+            </div>
+            <div class="benefit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Гарантия качества 5 лет</span>
+            </div>
+            <div class="benefit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>В наличии на складе</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="product-tabs">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="desc">Описание</button>
+          <button class="tab-btn" data-tab="specs">Характеристики</button>
+          <button class="tab-btn" data-tab="delivery">Доставка</button>
+        </div>
+        <div class="tabs-panels">
+          <div class="tab-panel active" id="desc">
+            <p>Венецианская штукатурка Venice Premium — это эксклюзивный материал для создания роскошных интерьеров. Благодаря особой технологии производства, покрытие обладает глубоким цветом и натуральным блеском.</p>
+            <p>Материал изготовлен на основе натуральной мраморной крошки и специальных связующих компонентов.</p>
+          </div>
+          <div class="tab-panel" id="specs">
+            <table class="specs-table">
+              <tr><td>Бренд</td><td>San Marco</td></tr>
+              <tr><td>Страна</td><td>Италия</td></tr>
+              <tr><td>Расход</td><td>0.3-0.5 кг/м²</td></tr>
+              <tr><td>Время высыхания</td><td>24 часа</td></tr>
+              <tr><td>Фасовка</td><td>1, 5, 15 кг</td></tr>
+            </table>
+          </div>
+          <div class="tab-panel" id="delivery">
+            <p>Доставка по Челябинску — от 500 ₽. Бесплатно при заказе от 15 000 ₽.</p>
+            <p>Самовывоз из салона: ул. Коммуны, 127 или ул. Труда, 174.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section class="related-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Похожие товары</h2>
+        <a href="catalog.html" class="link-arrow">Все товары <span>→</span></a>
+      </div>
+      <div class="products-grid">
+        <a href="product.html" class="product-card">
+          <div class="product-card-img">
+            <img src="./public/images/eYPy5_3n3tJ5d5ebWazQneW8cfk-OaopdJg7A0ZD2T0feZax92_MPMptJTeTYEV7MpNDwXDf9N2z8EIk_8Bdlm8n.webp" alt="">
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-cat">Штукатурка</span>
+            <h3 class="product-card-name">Штукатурка Travertino</h3>
+            <span class="product-card-price">7 200 ₽</span>
+          </div>
+        </a>
+        <a href="product.html" class="product-card">
+          <div class="product-card-img">
+            <img src="./public/images/fJ08JFB-rg8PI2ChKA74qPMAbdBpgU8rlIuZiDpHK5lrvssMLnfCdC6T5dk8bqaw4R-8LDqv0Y3h0acYuX1Z3A1S.webp" alt="">
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-cat">Штукатурка</span>
+            <h3 class="product-card-name">Штукатурка Silk Touch</h3>
+            <span class="product-card-price">6 800 ₽</span>
+          </div>
+        </a>
+        <a href="product.html" class="product-card">
+          <div class="product-card-img">
+            <img src="./public/images/-1h3uUw4nt-2G2k6A_qz2lDA5hJA1h1Zxig1S02t95xRPZaGzuN_cwWh0eqqi68Yte_lAZF705PLRHiTMm4NZhos.webp" alt="">
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-cat">Краски</span>
+            <h3 class="product-card-name">Краска Velvet Matte</h3>
+            <span class="product-card-price">4 500 ₽</span>
+          </div>
+        </a>
+        <a href="product.html" class="product-card">
+          <div class="product-card-img">
+            <img src="./public/images/NFHSDUk7hCs2n7OwJTP36Z24XZj6F2jkd1N8rkY1nySx47Etk_SEoDPcaFVZy12_Zm-QN5pIx8WXzQUAUOCo04Zr.webp" alt="">
+          </div>
+          <div class="product-card-info">
+            <span class="product-card-cat">Фрески</span>
+            <h3 class="product-card-name">Фреска Renaissance</h3>
+            <span class="product-card-price">45 000 ₽</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo-wrap">
+            <img src="./public/images/logo.webp" alt="Декор Комплект" class="footer-logo-img">
+            <div class="footer-logo-text">
+              <span class="footer-logo-name">Декор Комплект</span>
+              <span class="footer-logo-tagline">Салон декоративных покрытий</span>
+            </div>
+          </div>
+          <p class="footer-tagline">Премиальные отделочные материалы с 2009 года</p>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <a href="catalog.html">Краски</a>
+          <a href="catalog.html">Штукатурка</a>
+          <a href="catalog.html">Обои</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компания</h4>
+          <a href="#">О нас</a>
+          <a href="#">Контакты</a>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a href="tel:+73517277339">8 (351) 727-73-39</a>
+          <a href="#">ул. Коммуны, 127</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2009–2026 Декор Комплект
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function changeImage(thumb, src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+    
+    function changeQty(delta) {
+      const input = document.getElementById('qtyInput');
+      let value = parseInt(input.value) + delta;
+      if (value < 1) value = 1;
+      input.value = value;
+    }
+    
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+    
+    // Color buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    
+    // Size buttons
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

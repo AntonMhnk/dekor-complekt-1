@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Декор Комплект — Салон декоративных покрытий</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <style>
+    /* ================================================
+       КОНЦЕПТ 2: SCROLL SECTIONS
+       Цвета: Cinnamon (коричневый) + Изумрудный
+       ================================================ */
+    
+    @font-face {
+      font-family: 'Denistina';
+      src: url('./public/fonts/denistina_en.ttf') format('truetype');
+    }
+    
+    :root {
+      --color-bg: #F5F2EB;
+      --color-primary: #8B7355;
+      --color-secondary: #5A5A5A;
+      --color-accent: #A89078;
+      --color-text: #2C2C2C;
+      --color-text-muted: #7A7A7A;
+      --color-surface: #FFFFFF;
+      --color-dark: #6B5B4F;
+      --color-cinnamon: #8B7355;
+      --font-main: 'Montserrat', sans-serif;
+      --font-accent: 'Denistina', cursive;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-main);
+      font-weight: 300;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 245, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .logo-img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    
+    .logo-tagline {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .nav a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      transition: color 0.3s;
+    }
+    
+    .nav a:hover {
+      color: var(--color-primary);
+    }
+    
+    .header-cta {
+      padding: 12px 28px;
+      background: var(--color-primary);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+    
+    .header-cta:hover {
+      background: var(--color-dark);
+    }
+    
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 100%;
+      background-image: url('./public/images/eYPy5_3n3tJ5d5ebWazQneW8cfk-OaopdJg7A0ZD2T0feZax92_MPMptJTeTYEV7MpNDwXDf9N2z8EIk_8Bdlm8n.webp');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    
+    .hero-grid {
+      display: block;
+      max-width: 600px;
+      margin: 0;
+      margin-left: 5%;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-content {
+      padding-right: 40px;
+    }
+    
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .hero-label-line {
+      width: 40px;
+      height: 2px;
+      background: var(--color-secondary);
+    }
+    
+    .hero-label-text {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+    }
+    
+    .hero-title {
+      font-family: var(--font-accent);
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: normal;
+      line-height: 1.1;
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .hero-title .accent {
+      color: var(--color-primary);
+      font-style: italic;
+    }
+    
+    .hero-text {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 420px;
+      margin-bottom: 48px;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--color-dark);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--color-secondary);
+      color: var(--color-text);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--color-secondary);
+      color: white;
+    }
+    
+    .hero-image {
+      display: none;
+    }
+    
+    .hero-image-main {
+      display: none;
+    }
+    
+    .hero-image-badge {
+      display: none;
+    }
+    
+    .hero-badge-number {
+      display: none;
+    }
+    
+    .hero-badge-text {
+      display: none;
+    }
+    
+    /* ========== FEATURES STRIP ========== */
+    .features-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--color-cinnamon);
+      color: white;
+    }
+    
+    .feature-item {
+      padding: 48px 32px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .feature-item:last-child {
+      border-right: none;
+    }
+    
+    .feature-number {
+      font-family: var(--font-main);
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+    
+    .feature-text {
+      font-size: 12px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+    
+    /* ========== VIDEO SECTION ========== */
+    .video-section {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Фоновое изображение секции */
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./public/images/GncO_b-uaNqLeEGK81TnLTenZbi4dpYU1sThR_24kTx5SL89PSQEZ-HB1_waQUT636qIJKxnLQNtQyRh8w9jmMdh.webp');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .video-placeholder-pattern {
+      display: none;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 44, 44, 0.4);
+    }
+    
+    .video-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      max-width: 700px;
+      padding: 0 24px;
+    }
+    
+    .video-quote {
+      font-family: var(--font-accent);
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+    
+    .video-author {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    
+    .play-btn {
+      width: 100px;
+      height: 100px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      margin-top: 48px;
+      transition: all 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .play-btn:hover {
+      background: white;
+      color: var(--color-primary);
+      transform: scale(1.1);
+    }
+    
+    /* ========== CATEGORIES PREVIEW ========== */
+    .categories-preview {
+      padding: 120px 48px;
+    }
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-family: var(--font-accent);
+      font-size: 48px;
+      color: var(--color-dark);
+    }
+    
+    .section-link {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.3s;
+    }
+    
+    .section-link:hover {
+      gap: 16px;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .category-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .category-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .category-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 32px 24px;
+      background: linear-gradient(transparent, rgba(107, 91, 79, 0.9));
+      color: white;
+    }
+    
+    .category-card-name {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    
+    .category-card-count {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+    
+    /* ========== PRODUCTS PREVIEW ========== */
+    .products-preview {
+      padding: 120px 48px;
+      background: var(--color-surface);
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .product-card {
+      background: var(--color-bg);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    
+    .product-card-image {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    
+    .product-card:hover .product-card-image img {
+      transform: scale(1.05);
+    }
+    
+    .product-card-content {
+      padding: 24px;
+    }
+    
+    .product-card-category {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: 8px;
+    }
+    
+    .product-card-name {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--color-dark);
+    }
+    
+    .product-card-price {
+      font-size: 18px;
+      color: var(--color-primary);
+      font-weight: 400;
+    }
+    
+    /* ========== CTA SECTION ========== */
+    .cta-section {
+      padding: 120px 48px;
+      background: var(--color-dark);
+      text-align: center;
+      color: white;
+    }
+    
+    .cta-title {
+      font-family: var(--font-accent);
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .cta-text {
+      font-size: 16px;
+      opacity: 0.7;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    
+    .cta-btn {
+      padding: 20px 48px;
+      background: var(--color-secondary);
+      border: none;
+      color: white;
+      font-family: var(--font-main);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .cta-btn:hover {
+      background: var(--color-accent);
+    }
+    
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 60px 48px;
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .footer-logo-img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .footer-logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--color-bg);
+    }
+    
+    .footer-logo-tagline {
+      font-size: 11px;
+      color: rgba(245, 242, 235, 0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 40px;
+    }
+    
+    .footer-links a {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--color-bg);
+      transition: opacity 0.3s;
+    }
+    
+    .footer-links a:hover {
+      opacity: 0.7;
+    }
+    
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(245, 242, 235, 0.5);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-bg { display: none; }
+      .hero-image { order: -1; }
+      .hero-image-main { height: 400px; }
+      .hero-image-badge { left: 20px; bottom: -20px; }
+      .features-strip { grid-template-columns: repeat(2, 1fr); }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: 16px 24px; }
+      .nav { display: none; }
+      .header-cta { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-content { padding-right: 0; }
+      .features-strip { grid-template-columns: 1fr; }
+      .categories-preview { padding: 80px 24px; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .products-preview { padding: 80px 24px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; }
+      .footer { padding: 40px 24px; }
+      .footer-content { flex-direction: column; gap: 24px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="./public/images/logo.webp" alt="Декор Комплект" class="logo-img">
+      <div class="logo-text">
+        <span class="logo-name">Декор Комплект</span>
+        <span class="logo-tagline">Салон декоративных покрытий</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="#">О нас</a>
+      <a href="#">Контакты</a>
+    </nav>
+    <a href="#" class="header-cta">Консультация</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="hero-label-line"></span>
+          <span class="hero-label-text">Челябинск с 2009 года</span>
+        </div>
+        <h1 class="hero-title">
+          Открой - свой цвет<br>
+          <span class="accent">С нами легко</span>
+        </h1>
+        <p class="hero-text">
+          Премиальные декоративные покрытия от ведущих мировых производителей.
+        </p>
+        <div class="hero-buttons">
+          <a href="catalog.html" class="btn btn-primary">
+            Каталог
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#" class="btn btn-secondary">Консультация</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="./public/images/EN4LWs-4M-pPutx2FVyLhTx_wTnO30jqmPIzZJidAovx90GUNtu7iEiJ0v06F3FZi1A02jwtfKz9igAokTKXKTWf.webp" alt="Декоративная штукатурка" class="hero-image-main">
+        <div class="hero-image-badge">
+          <div class="hero-badge-number">15+</div>
+          <div class="hero-badge-text">лет опыта</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES STRIP -->
+  <section class="features-strip">
+    <div class="feature-item">
+      <div class="feature-number">50+</div>
+      <div class="feature-text">Брендов</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-number">5000+</div>
+      <div class="feature-text">Товаров</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-number">2</div>
+      <div class="feature-text">Филиала</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-number">10000+</div>
+      <div class="feature-text">Клиентов</div>
+    </div>
+  </section>
+
+  <!-- VIDEO / QUOTE SECTION -->
+  <section class="video-section">
+    <div class="video-placeholder"></div>
+    <div class="video-placeholder-pattern"></div>
+    <!-- Раскомментировать когда будет видео:
+    <video class="video-bg" autoplay muted loop playsinline>
+      <source src="video/texture.mp4" type="video/mp4">
+    </video>
+    -->
+    <div class="video-overlay"></div>
+    <div class="video-content">
+      <p class="video-quote">Интерьер — это отражение вашей души</p>
+      <span class="video-author">— Философия Декор Комплект</span>
+    </div>
+  </section>
+
+  <!-- CATEGORIES PREVIEW -->
+  <section class="categories-preview">
+    <div class="section-header">
+      <div></div>
+      <a href="catalog.html" class="section-link">
+        Весь каталог →
+      </a>
+    </div>
+    
+    <div class="categories-grid">
+      <a href="catalog.html" class="category-card">
+        <img src="./public/images/-1h3uUw4nt-2G2k6A_qz2lDA5hJA1h1Zxig1S02t95xRPZaGzuN_cwWh0eqqi68Yte_lAZF705PLRHiTMm4NZhos.webp" alt="Краски">
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Краски</h3>
+          <span class="category-card-count">24 товара</span>
+        </div>
+      </a>
+      <a href="catalog.html" class="category-card">
+        <img src="./public/images/EN4LWs-4M-pPutx2FVyLhTx_wTnO30jqmPIzZJidAovx90GUNtu7iEiJ0v06F3FZi1A02jwtfKz9igAokTKXKTWf.webp" alt="Штукатурка">
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Штукатурка</h3>
+          <span class="category-card-count">18 товаров</span>
+        </div>
+      </a>
+      <a href="catalog.html" class="category-card">
+        <img src="./public/images/GncO_b-uaNqLeEGK81TnLTenZbi4dpYU1sThR_24kTx5SL89PSQEZ-HB1_waQUT636qIJKxnLQNtQyRh8w9jmMdh.webp" alt="Обои">
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Обои</h3>
+          <span class="category-card-count">36 товаров</span>
+        </div>
+      </a>
+      <a href="catalog.html" class="category-card">
+        <img src="./public/images/NFHSDUk7hCs2n7OwJTP36Z24XZj6F2jkd1N8rkY1nySx47Etk_SEoDPcaFVZy12_Zm-QN5pIx8WXzQUAUOCo04Zr.webp" alt="Фрески">
+        <div class="category-card-overlay">
+          <h3 class="category-card-name">Фрески</h3>
+          <span class="category-card-count">12 товаров</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <h2 class="cta-title">Нужна консультация?</h2>
+    <p class="cta-text">Наши специалисты помогут подобрать идеальные материалы для вашего проекта</p>
+    <button class="cta-btn">Связаться с нами</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo-wrap">
+        <img src="./public/images/logo.webp" alt="Декор Комплект" class="footer-logo-img">
+        <div class="footer-logo-text">
+          <span class="footer-logo-name">Декор Комплект</span>
+          <span class="footer-logo-tagline">Салон декоративных покрытий</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="catalog.html">Каталог</a>
+        <a href="#">О нас</a>
+        <a href="#">Контакты</a>
+        <a href="tel:+73517277339">8 (351) 727-73-39</a>
+      </div>
+      <div class="footer-copy">© 2026</div>
+    </div>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animations
+    gsap.to('.hero-label', { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
+    gsap.to('.hero-title', { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+    gsap.to('.hero-text', { opacity: 1, y: 0, duration: 0.8, delay: 0.7 });
+    gsap.to('.hero-buttons', { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
+    gsap.to('.hero-image-main', { opacity: 1, scale: 1, duration: 1.2, delay: 0.4 });
+    gsap.to('.hero-image-badge', { opacity: 1, y: 0, duration: 0.8, delay: 1.1 });
+
+    // Features counter animation
+    ScrollTrigger.batch('.feature-number', {
+      onEnter: batch => {
+        batch.forEach(el => {
+          const target = parseInt(el.textContent);
+          gsap.fromTo(el, 
+            { innerText: 0 },
+            {
+              innerText: target,
+              duration: 2,
+              snap: { innerText: 1 },
+              onUpdate: function() {
+                el.textContent = Math.round(this.targets()[0].innerText) + (target > 100 ? '+' : '');
+              }
+            }
+          );
+        });
+      },
+      start: 'top 80%',
+      once: true
+    });
+
+    // Video section parallax
+    gsap.to('.video-placeholder-pattern', {
+      yPercent: 20,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.video-section',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // Category cards stagger
+    gsap.utils.toArray('.category-card').forEach((card, i) => {
+      gsap.fromTo(card, 
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: i * 0.15,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%'
+          }
+        }
+      );
+    });
+
+    // Product cards stagger
+    gsap.utils.toArray('.product-card').forEach((card, i) => {
+      gsap.fromTo(card, 
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          delay: i * 0.1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%'
+          }
+        }
+      );
+    });
+  </script>
+
+</body>
+</html>
