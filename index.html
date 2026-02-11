@@ -1143,6 +1143,97 @@
         margin-left: 100%;
       }
     }
+
+    /* ========== SCROLL ANIMATION SECTION ========== */
+    .scroll-animation-section {
+      height: 300vh;
+      position: relative;
+      background: var(--color-cream-light);
+    }
+
+    .scroll-animation-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #paint-canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+      z-index: 1;
+    }
+
+    .scroll-animation-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .scroll-text {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .scroll-text-1 {
+      top: 10%;
+      left: 0;
+    }
+
+    .scroll-text-2 {
+      bottom: 10%;
+      left: 0;
+    }
+
+    .scroll-text .scroll-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-bronze);
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px 16px;
+      border-radius: 100px;
+    }
+
+    .scroll-text h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300;
+      color: var(--color-truffle);
+      line-height: 1.2;
+      text-shadow: 0 2px 20px rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .scroll-animation-section {
+        height: 200vh;
+      }
+      
+      .scroll-text-1 {
+        top: 5%;
+      }
+      
+      .scroll-text-2 {
+        bottom: 5%;
+      }
+    }
   </style>
 </head>
 
@@ -1233,6 +1324,23 @@
     </div>
   </section>
 
+
+  <!-- SCROLL ANIMATION SECTION -->
+  <section class="scroll-animation-section">
+    <div class="scroll-animation-container">
+      <canvas id="paint-canvas"></canvas>
+      <div class="scroll-animation-content">
+        <div class="scroll-text scroll-text-1">
+          <span class="scroll-label">Искусство цвета</span>
+          <h2>Краски, которые<br>вдохновляют</h2>
+        </div>
+        <div class="scroll-text scroll-text-2">
+          <span class="scroll-label">Премиум качество</span>
+          <h2>Создайте свой<br>уникальный интерьер</h2>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CATEGORIES SECTION -->
   <section class="categories-section">
@@ -1594,6 +1702,110 @@
         });
       });
     });
+
+    // ========== SCROLL-DRIVEN PAINT ANIMATION ==========
+    const canvas = document.getElementById('paint-canvas');
+    const ctx = canvas.getContext('2d');
+    const frameCount = 145;
+    const frames = [];
+    let loadedCount = 0;
+
+    // Preload all frames
+    function preloadFrames() {
+      for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        const frameNum = String(i).padStart(3, '0');
+        img.src = `./public/frames/frame_${frameNum}.jpg`;
+        img.onload = () => {
+          loadedCount++;
+          // Set canvas size based on first loaded image
+          if (loadedCount === 1) {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+          }
+        };
+        frames.push(img);
+      }
+    }
+
+    // Render specific frame
+    function renderFrame(index) {
+      if (frames[index] && frames[index].complete) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(frames[index], 0, 0);
+      }
+    }
+
+    // Initialize scroll animation
+    function initScrollAnimation() {
+      const section = document.querySelector('.scroll-animation-section');
+      
+      // Main frame animation
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const frameIndex = Math.min(
+            Math.floor(self.progress * frameCount),
+            frameCount - 1
+          );
+          renderFrame(frameIndex);
+        }
+      });
+
+      // Text animations
+      gsap.to('.scroll-text-1', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          end: 'top 20%',
+          scrub: true
+        }
+      });
+
+      gsap.to('.scroll-text-1', {
+        opacity: 0,
+        y: -30,
+        scrollTrigger: {
+          trigger: section,
+          start: '30% top',
+          end: '50% top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.scroll-text-2', {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: section,
+          start: '50% top',
+          end: '70% top',
+          scrub: true
+        }
+      });
+
+      gsap.to('.scroll-text-2', {
+        opacity: 0,
+        y: -30,
+        scrollTrigger: {
+          trigger: section,
+          start: '85% top',
+          end: '100% top',
+          scrub: true
+        }
+      });
+    }
+
+    // Start loading and init
+    preloadFrames();
+    initScrollAnimation();
   </script>
 
 </body>
